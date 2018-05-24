@@ -10,10 +10,6 @@ class Layout extends Component {
     }
   }
 
-  componentWillUnmount() {
-    console.log("--- component unmount");
-  }
-
   onClick() {
     this.setState({
       toAddDevice: true
@@ -28,9 +24,7 @@ class Layout extends Component {
     return (
       <div className='layout'>
         <DeviceList/>
-        <div>
-          <button class='btn hidden' onClick={this.onClick.bind(this)}>Add Device</button> 
-        </div>
+        {/* <button class='btn hidden' onClick={this.onClick.bind(this)}>Add Device</button> */}
       </div>
     )
   }

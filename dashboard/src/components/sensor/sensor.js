@@ -7,11 +7,11 @@ class Sensor extends Component {
 
   render() {
     return (
-      <li> 
-        <div className="sensor-data">
-          <span className='sensor-name'>{this.props.sensor.name}</span> : <span>{this.props.sensor.value}</span> <span>{this.props.sensor.unit}</span>
-        </div>
-      </li>
+      <tr className='sens-items'>
+        <td>{this.props.sensor.name}</td>
+        <td>: {this.props.sensor.value}</td>
+        <td>{this.props.sensor.unit}</td>
+      </tr>
   )};
 }
 

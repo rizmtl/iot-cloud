@@ -23,11 +23,13 @@ class Device extends Component {
   render() {
     let renderedSensorData = this.renderSensorData();
     return(
-      <li>
-        <div className='device'>
-          <div className='device-name'>Name: {this.props.device.name}</div>
-          <ul className='sensor-list'>{renderedSensorData}</ul>
-        </div>
+      <li className='dev-li'>
+        <table>
+          <tr>
+            <th className='dev-name' colspan="2">{this.props.device.name}</th>
+          </tr>
+          {renderedSensorData}
+        </table>
       </li>
     )
   }

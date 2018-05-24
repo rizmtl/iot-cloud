@@ -8,18 +8,25 @@ import {
 
 import Layout from './components/layout/layout';
 import AddDevice from './components/device/addDevice';
-import './App.css'
+import './assets/style.css';
 
 class App extends Component {
   render() {
     return (
-      <div className='app'>
-        <BrowserRouter>
-          <Switch>
-            <Route path='/' exact component={Layout}/>
-            <Route path='/add-device' exact component={AddDevice}/>
-          </Switch>
-        </BrowserRouter>
+      <div>
+        <header>
+          <div className='container'>
+            <h1 id='acme-header'>ACME IoT Dashboard</h1>
+          </div>
+        </header>
+        <div className='container'>
+          <BrowserRouter>
+            <Switch>
+              <Route path='/' exact component={Layout}/>
+              <Route path='/add-device' exact component={AddDevice}/>
+            </Switch>
+          </BrowserRouter>
+        </div>
       </div>
     );
   }

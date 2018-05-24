@@ -40,7 +40,7 @@ class DeviceList extends Component {
   } 
 
   onError(err) { 
-    console.log("___ devie list error ", err);
+    console.log(err);
   }
 
   renderDevices() {
@@ -60,7 +60,7 @@ class DeviceList extends Component {
     }
     return(
       <div>
-        <ul className='device-list'>{devices}</ul>
+        <ul className='dev-ul'>{devices}</ul>
       </div>
     )
   }

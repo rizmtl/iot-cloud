@@ -206,24 +206,6 @@ class SimulatorMain {
   }
 }
 
-function printHelp() {
-  let msg = `node index.js [opts] [args]
-
-  For auto creation of device & start simulation
-    --sensors   maximum number of sensors
-    --devices   maximum number of devices
-  Manual creation of device
-    create 
-        --name      sensor name
-        --sensor    [name:value:unit,...name:value:unit] e.g: 100:celcius, if left blank it will create 3 sensors with random value;
-    delete
-        --id        sensor id
-    update 
-        --id        sensor id
-        --sensor    [name:value:unit,...name:value:unit], e.g: 100:celcius
-  `
-  console.log(msg);
-}
 
 const optionDefinitions = [
   { name: 'create', alias: 'c', type: Boolean },
@@ -235,8 +217,26 @@ const optionDefinitions = [
   { name: 'get', alias: 'g', type:Boolean},
   { name: 'start', type:Boolean},
   { name: 'auto', type:Boolean},
-  { name: 'clean', type:Boolean}
+  { name: 'clean', type:Boolean},
+  { name: 'help', alis: 'h', type:Boolean}
 ];
+
+function printHelp() {
+  let msg = `node index.js [opts] [args]
+    --create  : Creates a device, will require '--name' & '--sensor' parameters
+    --name    : Device name
+    --sensor  : Sensor parameters, takes multiple values, e.g: name1:value1:unit1 name2:value2:unit2
+    --update  : Updates device paramter, will require '--id' & '--sensor' parameter
+    --id      : Device id. A new id will be assigned if not provided
+    --delete  : Delete device, will require '--id' parameter
+    --get     : Returns all devices if '--id' parameter is not provided
+    --start   : Starts simulation with existing devices in dB
+    --auto    : Auto generates 5 devices with maximum of 5 sensors each. (Recommended to use for quick check)
+    --clean   : Cleans database
+    --help    : Prints help
+  `
+  console.log(msg);
+}
 
 if (require.main === module) {
   let cla;
@@ -246,6 +246,11 @@ if (require.main === module) {
   } catch(err) {
     logger.error('Failed to extract command line options', err);
     process.exit(1);
+  }
+
+  if (cla.help) {
+    printHelp();
+    return;
   }
 
   if (cla.create) {
@@ -306,3 +311,5 @@ if (require.main === module) {
       .catch((err) => logger.error('Failed to simulate', err));
   }
 }
+
+module.exports = SimulatorMain;
