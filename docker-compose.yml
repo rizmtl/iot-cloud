@@ -1,0 +1,16 @@
+version: '3'
+services:
+  api_server:
+    image: api_server:api_server
+    build: ./api_server
+    command: node index.js
+    ports:
+      - '8081:8081'
+    volumes:
+      - ./api_server:/opt/iot/api_server
+    depends_on:
+      - 'mongo'
+  mongo:
+    image: mongo
+    ports:
+      - '27017:27017'
