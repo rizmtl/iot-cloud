@@ -181,7 +181,23 @@ class SimulatorMain {
   async autoSimulate() {
     const maxDevices = 5;
     const maxSensors = 5;
+    let storedDevices;
 
+    try {
+      storedDevices = await this.getDevice();
+    } catch (err) {
+      logger.error('Failed check if existing device present', err);
+    }
+
+    if (storedDevices) {
+      logger.info('Stored devices found, will try to simulate them too');
+      try {
+        await this.simulate(storedDevices);
+      } catch(err) {
+        logger.error('Failed to simulate stored devices', err);
+      }
+    }
+    
     const simulator = new Simulator({
       logger: logger,
       port: port

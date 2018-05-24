@@ -6,7 +6,7 @@ const Errors = require('http-errors');
 class Device {
   constructor(options) {
     this.sensors = options.sensors ? options.sensors : [];
-    this.pollInterval = 5000;
+    this.pollInterval = 3000;
 
     this.logger = options.logger;
     this.url = options.url;

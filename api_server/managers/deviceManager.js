@@ -120,13 +120,13 @@ class DeviceManager {
     let docs;
     try {
       docs = await this.collection.remove({});
-      assert.strictEqual(1, docs.ok);
+      assert.strictEqual(1, docs.result.ok);
     } catch (err) {
       this.logger.error('Failed to delete all devices', err);
-      throw new Errors.InternalServerError('Failed delete all devices');
+      throw new Errors.InternalServerError('Failed to delete all devices');
     }
 
-    if (!docs.value) {
+    if (!docs.result.n) {
       this.logger.error('Devices not found');
       throw new Errors.NotFound('Devices not found');
     }
