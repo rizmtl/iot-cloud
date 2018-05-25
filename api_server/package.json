@@ -1,12 +1,12 @@
 {
-  "name": "iot_server",
-  "version": "1.0.0",
-  "description": "",
+  "name": "api_server",
+  "version": "0.1.0",
+  "description": "Api server for iot cloud simulator",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "rizmtl",
   "license": "ISC",
   "dependencies": {
     "bunyan": "^1.8.12",
