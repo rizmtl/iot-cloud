@@ -7,8 +7,6 @@ services:
     command: node index.js
     ports:
       - '8081:8081'
-    volumes:
-      - ./api_server:/opt/iot/api_server
     depends_on:
       - 'mongo'
 
@@ -25,8 +23,6 @@ services:
     command: node server.js
     ports:
       - '8080:8080'
-    volumes:
-      - ./dashboard:/opt/iot/dashboard
     depends_on:
       - 'mongo'
       - 'api_server'
