@@ -64,7 +64,7 @@ node index.js [opts] [args]
     --delete  : Delete device, will require '--id' parameter
     --get     : Returns all devices if '--id' parameter is not provided
     --start   : Starts simulation with existing devices in dB
-    --auto    : Auto generates 5 devices with maximum of 5 sensors each. (Recommended to use for quick check)
+    --auto    : Auto generates 5 devices with random number of sensors upto 5 sensors each (Recommended to use for quick check)
     --clean   : Cleans database
     --help    : Prints help
 ```
