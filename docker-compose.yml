@@ -1,7 +1,8 @@
 version: '3'
 services:
   api_server:
-    image: api_server:api_server
+    image: api_server
+    container_name: api_server
     build: ./api_server
     command: node index.js
     ports:
@@ -10,7 +11,22 @@ services:
       - ./api_server:/opt/iot/api_server
     depends_on:
       - 'mongo'
+
   mongo:
     image: mongo
+    container_name: mongo
     ports:
       - '27017:27017'
+
+  dashboard:
+    image: dashboard
+    container_name: dashboard
+    build: ./dashboard
+    command: node server.js
+    ports:
+      - '8080:8080'
+    volumes:
+      - ./dashboard:/opt/iot/dashboard
+    depends_on:
+      - 'mongo'
+      - 'api_server'
