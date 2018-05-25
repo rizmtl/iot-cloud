@@ -1,9 +1,9 @@
 # IoT Cloud
 
-This project simulates a cloud environment for iot devices, where devices with various sensor can connect to the cloud and store various their information. 
+This project simulates cloud environment for iot devices, where devices with various sensors can connect to the cloud and store their information. 
 
 ## Project Architecture
-This project has 4 main components each running in its own docker container. Details on the components are provided in sections below
+This project has 4 main components: api server, dashboard, database & simulator. Each component runs in its own container and are described below.
 
 ### Api server
 Api servers provides end point api to create, update, read & delete devices in database. Functionality and end points are listed below
@@ -32,12 +32,12 @@ Sample data schema is shown below
 		{
 			"value" : 85,
 			"name" : "Sensor-1",
-			"unit" : "Ampere"
+			"unit" : "Volt"
 		},
 		{
 			"value" : 23,
 			"name" : "Sensor-2",
-			"unit" : "Ampere"
+			"unit" : "Kelvin"
 		}
 	],
 	"id" : "d07e8b30-5fba-11e8-938a-2d92311bcc09"
@@ -45,10 +45,10 @@ Sample data schema is shown below
 ```
 
 ### Dashboard
-Dashboard displays list of devices and its current sensor information stored in the database. After container `dashboard` starts, it can be accessed at `http://localhost:8080`
+The Dashboard displays list of devices and current sensor information that are stored in the database. After container `dashboard` starts, it can be accessed at `http://localhost:8080`
 
 ### Simulator
-Simulator is designed to simulate devices along with other functionalities. To test the system, it is recommend to use the `--auto` option. This will generate 5 devices with a maximum of 5 sensors each. 
+The Simulator is designed to simulate devices along with other functionalities. To test the system, it is recommended to use `--auto` option. This will generate 5 devices with random number of sensors upto a maximum of 5 sensors each. 
 
 Once `api_server` container is online, simulator can be executed on the container itself `docker exec -it --user root api_server /usr/local/bin/node /opt/iot/api_server/simulator/index.js [OPTS] [ARGS]`
 
@@ -91,15 +91,16 @@ Usage example:
 * To clean dB to add fresh new devices `docker exec -it --user root api_server /usr/local/bin/node/opt/iot/api_server/simulator/index.js --clean`
 
 # Project Setup
-Below are steps to start the project. 
+Steps to start project:
+
 * Clone this repo
 * Navigate to root folder and create docker containers `docker-compose build`
 * Run the containers after they are created `docker-compose up`.
-* Start device simulation. It is recommend to use `--auto` option, as this will auto generate devices and start simulation. Device paramters are updated every 3 seconds. Note that any devices that are stored in dB will be also added to simulation.
+* Start device simulation. It is recommended to use `--auto` option, this will auto generate devices and start the simulation. Device parameters are updated every 3 seconds. Note: Any devices that are stored in dB will also be added to the simulation.
   ```
   docker exec -it --user root api_server /usr/local/bin/node /opt/iot/api_server/simulator/index.js --auto
   ```
-* Open browser and navigate to `localhost:8080`
+* Open browser and navigate to `http://localhost:8080`
 
   
 
