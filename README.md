@@ -1,4 +1,4 @@
-# Iot Cloud
+# IoT Cloud
 
 This project simulates a cloud environment for iot devices, where devices with various sensor can connect to the cloud and store various their information. 
 
@@ -95,7 +95,7 @@ Below are steps to start the project.
 * Clone this repo
 * Navigate to root folder and create docker containers `docker-compose build`
 * Run the containers after they are created `docker-compose up`.
-* Start device simulation. It is recommend to is `--auto` option, as this will auto generate devices and start simulation. Device paramters are updated every 3 seconds
+* Start device simulation. It is recommend to use `--auto` option, as this will auto generate devices and start simulation. Device paramters are updated every 3 seconds. Note that any devices that are stored in dB will be also added to simulation.
   ```
   docker exec -it --user root api_server /usr/local/bin/node /opt/iot/api_server/simulator/index.js --auto
   ```
